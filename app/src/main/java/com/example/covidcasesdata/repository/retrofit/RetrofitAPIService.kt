@@ -1,23 +1,24 @@
 package com.example.covidcasesdata.repository.retrofit
+
 import com.example.covidcasesdata.utils.EndPoint
 import retrofit2.http.*
 
-import com.example.covidcasesdata.models.IndiaDayWise
+import com.example.covidcasesdata.models.Covid19IndiaData
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 interface RetrofitAPIService {
     // check writing DailyDataIndia
     @GET("data.json")
-    suspend fun getDayWiseIndiaData(): IndiaDayWise
+    suspend fun getCovidIndiaAndStatesData(): Covid19IndiaData
 
-    companion object{
+    companion object {
         var retrofitService: RetrofitAPIService? = null
-        fun getInstance() : RetrofitAPIService {
+        fun getInstance(): RetrofitAPIService {
 
             if (retrofitService == null) {
                 val retrofit = Retrofit.Builder()
-                    .baseUrl(EndPoint.BASE_URL)
+                    .baseUrl(EndPoint.INDIA_DAYWISE_DATA_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                 retrofitService = retrofit.create(RetrofitAPIService::class.java)

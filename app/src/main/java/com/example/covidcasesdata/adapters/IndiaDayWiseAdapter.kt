@@ -7,28 +7,30 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.covidcasesdata.R
 import com.example.covidcasesdata.models.IndiaPerDay
+import com.example.covidcasesdata.utils.HelperUtil.Companion.YMDtoDayMonth
 
-class DayWiseCasesIndiaAdapter (private var indiaPerDay: List<IndiaPerDay>):
-    RecyclerView.Adapter<DayWiseCasesIndiaAdapter.DayWiseCasesIndiaViewHolder>() {
+class IndiaDayWiseAdapter(private var indiaPerDay: List<IndiaPerDay>) :
+    RecyclerView.Adapter<IndiaDayWiseAdapter.DayWiseCasesIndiaViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DayWiseCasesIndiaViewHolder {
-        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.row_daywise_indiacases, parent, false)
+        val view: View = LayoutInflater.from(parent.context)
+            .inflate(R.layout.row_daywise_indiacases, parent, false)
         return DayWiseCasesIndiaViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: DayWiseCasesIndiaViewHolder, position: Int) {
-        val indiaPerInADay: IndiaPerDay = indiaPerDay[position]
-        holder.tvDate.text = indiaPerInADay.date
-        holder.tvConfirmed.text = indiaPerInADay.dailyConfirmed
-        holder.tvDeceased.text = indiaPerInADay.dailyDeceased
-        holder.tvRecovered.text = indiaPerInADay.dailyRecovered
+        val indiaPerDay: IndiaPerDay = indiaPerDay[position]
+        holder.tvDate.text = YMDtoDayMonth(indiaPerDay.date)
+        holder.tvConfirmed.text = indiaPerDay.dailyConfirmed
+        holder.tvDeceased.text = indiaPerDay.dailyDeceased
+        holder.tvRecovered.text = indiaPerDay.dailyRecovered
     }
 
     override fun getItemCount(): Int {
         return indiaPerDay.size
     }
 
-    fun updateDailyData(indiaPerDay: List<IndiaPerDay>){
+    fun updateDailyData(indiaPerDay: List<IndiaPerDay>) {
         this.indiaPerDay = indiaPerDay.reversed()
         notifyDataSetChanged()
     }
