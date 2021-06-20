@@ -1,6 +1,7 @@
 package com.example.covidcasesdata.models
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class Covid19IndiaData (
     @SerializedName("cases_time_series")
@@ -35,4 +36,4 @@ data class StateTotal(
     val state: String,
     @SerializedName("statecode")
     val stateCode: String
-)
+): Serializable

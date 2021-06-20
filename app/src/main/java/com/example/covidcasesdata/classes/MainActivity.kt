@@ -1,7 +1,10 @@
 package com.example.covidcasesdata.classes
 
+import android.content.Intent
 import android.os.Bundle
-import android.widget.TextView
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
@@ -12,18 +15,20 @@ import com.example.covidcasesdata.R
 import com.example.covidcasesdata.adapters.IndiaDayWiseAdapter
 import com.example.covidcasesdata.databinding.ActivityMainBinding
 import com.example.covidcasesdata.models.IndiaPerDay
+import com.example.covidcasesdata.models.StateTotal
 import com.example.covidcasesdata.viewmodel.MyViewModel
-import com.example.covidcasesdata.utils.HelperUtil
 import com.example.covidcasesdata.utils.HelperUtil.Companion.convertToINS
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
     lateinit var myViewModel: MyViewModel
     private lateinit var binding: ActivityMainBinding
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var dividerItemDecoration: DividerItemDecoration
     private var indiaDataDayWiseList = ArrayList<IndiaPerDay>()
     private lateinit var indiaDayWiseAdapter: IndiaDayWiseAdapter
+    private var statesNames: ArrayList<String> = ArrayList()
+    private var statesTotalCasesHashMap: HashMap<String, StateTotal> = HashMap()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -36,25 +41,29 @@ class MainActivity : AppCompatActivity() {
         observeIndiaDayWiseData()
     }
 
+    private fun setUpSearchBar() {
+        ArrayAdapter(this, R.layout.simple_list_item_1, statesNames).also {
+                adapter -> binding.searchBar.setAdapter(adapter)
+        }
+        binding.searchBar.onItemClickListener = this
+    }
+
     private fun isInternetAvailable() {
-//        try {
-//            val ipAddr: InetAddress = InetAddress.getByName("google.com")
-//            //You can replace it with your name
-//            if(ipAddr.equals("")) return
-//        }catch (e: Exception){
-//            var alertDialog: AlertDialog = AlertDialog.Builder(this).create()
-//            alertDialog.setMessage("No internet Connection.")
-//            alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, this,
-//                    )
-//        }
     }
 
     private fun observeIndiaDayWiseData() {
         //what is owner here? why? for life cycle?
-        myViewModel.mutableLiveDataList().observe(this, {
+        myViewModel.indiaCasesLiveDataList().observe(this, {
             indiaDataDayWiseList = it as ArrayList<IndiaPerDay>
             fillTotalIndiaData(indiaDataDayWiseList[indiaDataDayWiseList.size - 1])
             indiaDayWiseAdapter.updateDailyData(indiaDataDayWiseList)
+        })
+        myViewModel.statesNamesLiveDataList().observe(this,{
+            statesNames = it as ArrayList<String>
+            setUpSearchBar()
+        })
+        myViewModel.statesCasesLiveDataList().observe(this, {
+            statesTotalCasesHashMap = it as HashMap<String, StateTotal>
         })
     }
 
@@ -81,5 +90,13 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerView.addItemDecoration(dividerItemDecoration)
 
         myViewModel.loadIndiaDayWiseData()
+    }
+
+    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        val stateName: String = parent?.getItemAtPosition(position) as String
+        binding.searchBar.text.clear()
+        val intent = Intent(this,StateDataActivity::class.java)
+        intent.putExtra("StateData", statesTotalCasesHashMap[stateName])
+        startActivity(intent)
     }
 }
