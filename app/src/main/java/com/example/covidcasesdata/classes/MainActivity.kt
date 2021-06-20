@@ -26,7 +26,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var indiaDayWiseAdapter: IndiaDayWiseAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         init()
@@ -66,7 +68,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun init() {
-        binding = ActivityMainBinding.inflate(layoutInflater)
         indiaDayWiseAdapter = IndiaDayWiseAdapter(indiaDataDayWiseList)
         myViewModel = ViewModelProvider(this).get(MyViewModel::class.java)
 
