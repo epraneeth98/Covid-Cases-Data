@@ -10,6 +10,7 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/search_system"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="6dp"
@@ -28,6 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
+                android:completionThreshold="1"
                 android:hint="Search for a State"
                 android:paddingTop="7dp" />
         </LinearLayout>
@@ -39,49 +41,61 @@
             android:orientation="horizontal"
             android:padding="4dp" />
 
-        <TextView
+        <LinearLayout
+            android:id="@+id/ll_total_india_cases"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Total"
-            android:textColor="@color/dark_cyan"
-            android:textSize="30sp" />
+            android:layout_margin="5dp"
+            android:background="@drawable/round_cornered_rectangle"
+            android:orientation="vertical"
+            android:padding="10dp">
 
-        <TextView
-            android:id="@+id/tv_total_india_active"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Total"
-            android:textColor="@color/black"
-            android:textSize="30sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Total"
+                android:textColor="@color/purple_500"
+                android:textSize="30sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/tv_total_india_confirmed"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Total"
-            android:textColor="@color/black"
-            android:textSize="30sp" />
+            <TextView
+                android:id="@+id/tv_total_india_active"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Active: ....."
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/tv_total_india_recovered"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Total"
-            android:textColor="@color/black"
-            android:textSize="30sp" />
+            <TextView
+                android:id="@+id/tv_total_india_confirmed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Confirmed: ....."
+                android:textColor="@color/black"
+                android:textSize="30sp" />
 
-        <TextView
-            android:id="@+id/tv_total_india_deceased"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Total"
-            android:textColor="@color/black"
-            android:textSize="30sp" />
+            <TextView
+                android:id="@+id/tv_total_india_recovered"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Recovered: ....."
+                android:textColor="@color/black"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/tv_total_india_deceased"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Deaths: ....."
+                android:textColor="@color/black"
+                android:textSize="30sp" />
+        </LinearLayout>
 
     </LinearLayout>
 </ScrollView>

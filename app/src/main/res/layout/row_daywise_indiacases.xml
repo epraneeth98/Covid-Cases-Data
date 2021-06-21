@@ -1,36 +1,26 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_margin="3dp"
+    android:background="@drawable/round_cornered_rectangle"
     android:orientation="vertical"
-    android:padding="20dp">
+    android:padding="14dp">
 
     <TextView
         android:id="@+id/tv_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="2021-06-18"
-        android:textColor="@color/green"
-        android:textSize="20sp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Confirmed:"
-        android:textColor="@color/black"
+        android:layout_gravity="center"
+        android:text="29 Feb"
+        android:textStyle="bold"
+        android:textColor="@color/purple_500"
         android:textSize="20sp" />
 
     <TextView
         android:id="@+id/tv_confirmed_no"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="9876"
-        android:textColor="@color/black"
-        android:textSize="20sp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Deaths:"
+        android:text="Confirmed: 9876"
         android:textColor="@color/black"
         android:textSize="20sp" />
 
@@ -38,14 +28,7 @@
         android:id="@+id/tv_deceased_no"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="8765"
-        android:textColor="@color/black"
-        android:textSize="20sp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Recovered:"
+        android:text="Deaths:    8765"
         android:textColor="@color/black"
         android:textSize="20sp" />
 
@@ -53,7 +36,7 @@
         android:id="@+id/tv_recovered_no"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="987"
+        android:text="Recovered: 987"
         android:textColor="@color/black"
         android:textSize="20sp" />
 </LinearLayout>

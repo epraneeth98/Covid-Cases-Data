@@ -38,8 +38,8 @@ class MyViewModel : ViewModel() {
             val statesList: ArrayList<String> = ArrayList()
             var stateNameStateTotalHashMap: HashMap<String, StateTotal> = HashMap()
             for(stateTotal in statesTotalData){
-                statesList.add(stateTotal.state+"-"+stateTotal.stateCode)
-                stateNameStateTotalHashMap[stateTotal.state+"-"+stateTotal.stateCode] = stateTotal
+                statesList.add(stateTotal.state)
+                stateNameStateTotalHashMap[stateTotal.state] = stateTotal
             }
             dailyIndiaCasesListLiveData.postValue(dayWiseIndiaData)
             statesTotalCasesListLiveData.postValue(stateNameStateTotalHashMap)

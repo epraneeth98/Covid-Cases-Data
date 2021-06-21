@@ -1,5 +1,6 @@
 package com.example.covidcasesdata.classes
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -16,8 +17,8 @@ import com.example.covidcasesdata.adapters.IndiaDayWiseAdapter
 import com.example.covidcasesdata.databinding.ActivityMainBinding
 import com.example.covidcasesdata.models.IndiaPerDay
 import com.example.covidcasesdata.models.StateTotal
-import com.example.covidcasesdata.viewmodel.MyViewModel
 import com.example.covidcasesdata.utils.HelperUtil.Companion.convertToINS
+import com.example.covidcasesdata.viewmodel.MyViewModel
 
 
 class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
@@ -29,6 +30,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
     private lateinit var indiaDayWiseAdapter: IndiaDayWiseAdapter
     private var statesNames: ArrayList<String> = ArrayList()
     private var statesTotalCasesHashMap: HashMap<String, StateTotal> = HashMap()
+    private var isStateListAvailable: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -60,6 +62,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
         })
         myViewModel.statesNamesLiveDataList().observe(this,{
             statesNames = it as ArrayList<String>
+            isStateListAvailable = true
             setUpSearchBar()
         })
         myViewModel.statesCasesLiveDataList().observe(this, {
@@ -67,11 +70,12 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
         })
     }
 
+    @SuppressLint("SetTextI18n")
     private fun fillTotalIndiaData(indiaPerDay: IndiaPerDay) {
         binding.tvTotalIndiaConfirmed.text = "Confirmed: " + convertToINS(indiaPerDay.totalConfirmed)
-        binding.tvTotalIndiaDeceased.text = "Deceased: " + convertToINS(indiaPerDay.totalDeceased)
+        binding.tvTotalIndiaDeceased.text = "Deceased:  " + convertToINS(indiaPerDay.totalDeceased)
         binding.tvTotalIndiaRecovered.text = "Recovered: " + convertToINS(indiaPerDay.totalRecovered)
-        binding.tvTotalIndiaActive.text = "Active: " + convertToINS((indiaPerDay.totalConfirmed.toInt()
+        binding.tvTotalIndiaActive.text = "Active:        " + convertToINS((indiaPerDay.totalConfirmed.toInt()
                 - indiaPerDay.totalDeceased.toInt()
                 - indiaPerDay.totalRecovered.toInt()).toString())
     }
@@ -82,13 +86,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
 
         binding.recyclerView.adapter = indiaDayWiseAdapter
         linearLayoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
-        dividerItemDecoration = DividerItemDecoration(
-            binding.recyclerView.context,
-            linearLayoutManager.orientation
-        )
         binding.recyclerView.layoutManager = linearLayoutManager
-        binding.recyclerView.addItemDecoration(dividerItemDecoration)
-
         myViewModel.loadIndiaDayWiseData()
     }
 

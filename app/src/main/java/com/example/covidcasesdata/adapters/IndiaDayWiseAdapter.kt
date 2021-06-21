@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.covidcasesdata.R
 import com.example.covidcasesdata.models.IndiaPerDay
 import com.example.covidcasesdata.utils.HelperUtil.Companion.YMDtoDayMonth
+import com.example.covidcasesdata.utils.HelperUtil.Companion.convertToINS
 
 class IndiaDayWiseAdapter(private var indiaPerDay: List<IndiaPerDay>) :
     RecyclerView.Adapter<IndiaDayWiseAdapter.DayWiseCasesIndiaViewHolder>() {
@@ -21,9 +22,9 @@ class IndiaDayWiseAdapter(private var indiaPerDay: List<IndiaPerDay>) :
     override fun onBindViewHolder(holder: DayWiseCasesIndiaViewHolder, position: Int) {
         val indiaPerDay: IndiaPerDay = indiaPerDay[position]
         holder.tvDate.text = YMDtoDayMonth(indiaPerDay.date)
-        holder.tvConfirmed.text = indiaPerDay.dailyConfirmed
-        holder.tvDeceased.text = indiaPerDay.dailyDeceased
-        holder.tvRecovered.text = indiaPerDay.dailyRecovered
+        holder.tvConfirmed.text = "Confirmed: "+convertToINS(indiaPerDay.dailyConfirmed)
+        holder.tvDeceased.text = "Deaths:       "+convertToINS(indiaPerDay.dailyDeceased)
+        holder.tvRecovered.text = "Recovered: "+convertToINS(indiaPerDay.dailyRecovered)
     }
 
     override fun getItemCount(): Int {
