@@ -56,7 +56,7 @@
                 android:layout_gravity="center"
                 android:text="Total"
                 android:textColor="@color/purple_500"
-                android:textSize="30sp"
+                android:textSize="25sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -66,7 +66,7 @@
                 android:layout_gravity="center"
                 android:text="Active: ....."
                 android:textColor="@color/black"
-                android:textSize="30sp"
+                android:textSize="23sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -76,7 +76,7 @@
                 android:layout_gravity="center"
                 android:text="Confirmed: ....."
                 android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:textSize="23sp" />
 
             <TextView
                 android:id="@+id/tv_total_india_recovered"
@@ -85,7 +85,7 @@
                 android:layout_gravity="center"
                 android:text="Recovered: ....."
                 android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:textSize="23sp" />
 
             <TextView
                 android:id="@+id/tv_total_india_deceased"
@@ -94,7 +94,7 @@
                 android:layout_gravity="center"
                 android:text="Deaths: ....."
                 android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:textSize="23sp" />
         </LinearLayout>
 
     </LinearLayout>

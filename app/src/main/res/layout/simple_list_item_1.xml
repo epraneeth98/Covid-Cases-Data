@@ -2,7 +2,7 @@
     android:id="@android:id/text1"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="@color/light_grey"
+    android:background="@color/very_light_grey"
     android:padding="3dp"
     android:textColor="@color/black"
     android:textSize="20dp" />
