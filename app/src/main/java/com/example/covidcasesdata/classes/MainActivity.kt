@@ -1,5 +1,6 @@
 package com.example.covidcasesdata.classes
 
+import android.R
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
@@ -12,7 +13,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.covidcasesdata.R
 import com.example.covidcasesdata.adapters.IndiaDayWiseAdapter
 import com.example.covidcasesdata.databinding.ActivityMainBinding
 import com.example.covidcasesdata.models.IndiaPerDay
@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         init()
