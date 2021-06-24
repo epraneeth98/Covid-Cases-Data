@@ -51,10 +51,11 @@ class HelperUtil {
                 }
             }
             // Reverse the output
-            val reverseOutput = output.reverse()
+            var reverseOutput: String = output.reverse().toString()
             // Return the output string back
             // to the main function
-            return reverseOutput.toString()
+            if(reverseOutput.first()==',') reverseOutput = reverseOutput.substring(1)
+            return reverseOutput
         }
 
         fun YMDtoDayMonth(string_date: String): String{

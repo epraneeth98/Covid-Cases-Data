@@ -54,8 +54,7 @@ class StateDataActivity : AppCompatActivity() {
         addSearchToSharedPreference(stateTotal.state)
 
         Toast.makeText(this, "Data is Loading... Please Wait...", Toast.LENGTH_SHORT).show()
-        if(stateTotal.state=="Andhra Pradesh") binding.stateMap.setImageResource(R.drawable.andhrapradesh_map)
-        else if(stateTotal.state=="Telangana") binding.stateMap.setImageResource(R.drawable.telangana_map)
+        setStateImage(stateTotal.state)
 
         statesDayWiseAdapter = StatesDayWiseAdapter(statesTillADayList, stateTotal.state)
         binding.recyclerView.adapter = statesDayWiseAdapter
@@ -67,4 +66,13 @@ class StateDataActivity : AppCompatActivity() {
     private fun addSearchToSharedPreference(stateName: String) {
         myViewModel.updateSearchedStateSharedPreference(AppConstants.RECENT_STATE_SEARCH, stateName)
     }
+
+    private fun setStateImage(stateName: String) {
+        when(stateName){
+            "Andhra Pradesh"-> binding.stateMap.setImageResource(R.drawable.andhrapradesh_map)
+            "Telangana"->binding.stateMap.setImageResource(R.drawable.telangana_map)
+            "Karnataka"->binding.stateMap.setImageResource(R.drawable.karnataka_map)
+        }
+    }
+
 }

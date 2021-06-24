@@ -50,7 +50,9 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
         val arrayAdapter: ArrayAdapter<String> = ArrayAdapter(this, R.layout.simple_list_item_1, statesNames)
         binding.searchBar.setAdapter(arrayAdapter)
         binding.searchBar.onItemClickListener = this
-        displayRecentSearch()
+        binding.searchLayout.setOnClickListener{
+            displayRecentSearch()
+        }
     }
 
     private fun displayRecentSearch() {
@@ -111,6 +113,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
         linearLayoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
         binding.recyclerView.layoutManager = linearLayoutManager
         myViewModel.loadIndiaDayWiseData()
+        binding.recentStateSearchLayout.visibility = View.GONE
     }
 
     override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
