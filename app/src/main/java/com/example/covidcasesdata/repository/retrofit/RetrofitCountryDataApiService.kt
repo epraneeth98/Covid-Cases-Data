@@ -7,23 +7,23 @@ import com.example.covidcasesdata.models.Covid19IndiaData
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-interface RetrofitAPIService {
+interface RetrofitCountryDataApiService {
     // check writing DailyDataIndia
     @GET("data.json")
     suspend fun getCovidIndiaAndStatesData(): Covid19IndiaData
 
     companion object {
-        var retrofitService: RetrofitAPIService? = null
-        fun getInstance(): RetrofitAPIService {
+        var retrofitCountryDataService: RetrofitCountryDataApiService? = null
+        fun getInstance(): RetrofitCountryDataApiService {
 
-            if (retrofitService == null) {
+            if (retrofitCountryDataService == null) {
                 val retrofit = Retrofit.Builder()
-                    .baseUrl(EndPoint.INDIA_DAYWISE_DATA_URL)
+                    .baseUrl(EndPoint.INDIA_DAYWISE_DATA_END_POINT)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
-                retrofitService = retrofit.create(RetrofitAPIService::class.java)
+                retrofitCountryDataService = retrofit.create(RetrofitCountryDataApiService::class.java)
             }
-            return retrofitService!!
+            return retrofitCountryDataService!!
         }
     }
 }

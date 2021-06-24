@@ -64,7 +64,8 @@ class HelperUtil {
                 val milliseconds: Long = d.time
                 val c = Calendar.getInstance()
                 val mayBeToday: Long = milliseconds + 86400000
-                if (DateUtils.isToday(mayBeToday)) return "Yesterday"
+                if(DateUtils.isToday(milliseconds)) return "Today"
+                else if (DateUtils.isToday(mayBeToday)) return "Yesterday"
                 //Set time in milliseconds
                 c.timeInMillis = milliseconds
                 val month = String.format(Locale.US,"%tB",c)

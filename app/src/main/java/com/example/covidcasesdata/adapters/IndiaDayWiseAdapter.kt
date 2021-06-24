@@ -1,5 +1,6 @@
 package com.example.covidcasesdata.adapters
 
+import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,20 +12,23 @@ import com.example.covidcasesdata.utils.HelperUtil.Companion.YMDtoDayMonth
 import com.example.covidcasesdata.utils.HelperUtil.Companion.convertToINS
 
 class IndiaDayWiseAdapter(private var indiaPerDay: List<IndiaPerDay>) :
-    RecyclerView.Adapter<IndiaDayWiseAdapter.DayWiseCasesIndiaViewHolder>() {
+    RecyclerView.Adapter<IndiaDayWiseAdapter.DayWiseCasesViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DayWiseCasesIndiaViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DayWiseCasesViewHolder {
         val view: View = LayoutInflater.from(parent.context)
-            .inflate(R.layout.row_daywise_indiacases, parent, false)
-        return DayWiseCasesIndiaViewHolder(view)
+            .inflate(R.layout.row_daywise_cases, parent, false)
+        return DayWiseCasesViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: DayWiseCasesIndiaViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: DayWiseCasesViewHolder, position: Int) {
         val indiaPerDay: IndiaPerDay = indiaPerDay[position]
         holder.tvDate.text = YMDtoDayMonth(indiaPerDay.date)
         holder.tvConfirmed.text = "Confirmed: "+convertToINS(indiaPerDay.dailyConfirmed)
         holder.tvDeceased.text = "Deaths:       "+convertToINS(indiaPerDay.dailyDeceased)
         holder.tvRecovered.text = "Recovered: "+convertToINS(indiaPerDay.dailyRecovered)
+
+        if(holder.tvDate.text == "Yesterday" || holder.tvDate.text == "Today") holder.tvConfirmed.setTypeface(holder.tvConfirmed.typeface, Typeface.BOLD)
+
     }
 
     override fun getItemCount(): Int {
@@ -37,7 +41,7 @@ class IndiaDayWiseAdapter(private var indiaPerDay: List<IndiaPerDay>) :
     }
 
 
-    class DayWiseCasesIndiaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class DayWiseCasesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvDate: TextView = itemView.findViewById(R.id.tv_date)
         val tvConfirmed: TextView = itemView.findViewById(R.id.tv_confirmed_no)
         val tvDeceased: TextView = itemView.findViewById(R.id.tv_deceased_no)

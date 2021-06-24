@@ -30,9 +30,45 @@
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:completionThreshold="1"
+                android:ellipsize="none"
                 android:hint="Search for a State"
-                android:paddingTop="7dp" />
+                android:paddingTop="7dp"
+                android:singleLine="true" />
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/recent_state_search_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="-5dp"
+            android:orientation="horizontal"
+            android:padding="4dp">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_baseline_history_24" />
+
+            <TextView
+                android:id="@+id/recent_state_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:gravity="left"
+                android:paddingTop="2dp"
+                android:text="Himachal Pradesh"
+                android:textSize="18dp" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_state_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="INDIA WIDE STATS"
+            android:textColor="@color/purple_500"
+            android:textSize="28sp"
+            android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
@@ -96,20 +132,20 @@
                         android:textSize="23sp" />
 
                     <TextView
-                        android:id="@+id/tv_total_india_recovered"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left"
-                        android:text="Recovered: ....."
-                        android:textColor="@color/black"
-                        android:textSize="23sp" />
-
-                    <TextView
                         android:id="@+id/tv_total_india_deceased"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="left"
                         android:text="Deaths: ....."
+                        android:textColor="@color/black"
+                        android:textSize="23sp" />
+
+                    <TextView
+                        android:id="@+id/tv_total_india_recovered"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:text="Recovered: ....."
                         android:textColor="@color/black"
                         android:textSize="23sp" />
                 </LinearLayout>
